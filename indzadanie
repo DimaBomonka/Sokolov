@@ -1,0 +1,38 @@
+import numpy as np
+
+def plane_equation(point1, point2, point3):
+    # Определение векторов
+    v1 = np.array(point2) - np.array(point1)
+    v2 = np.array(point3) - np.array(point1)
+    
+    # Нахождение нормального вектора
+    normal_vector = np.cross(v1, v2)
+    
+    # Уравнение плоскости: Ax + By + Cz + D = 0
+    A, B, C = normal_vector
+    D = -np.dot(normal_vector, np.array(point1))
+    
+    return A, B, C, D
+
+def triangle_area(point1, point2, point3):
+    # Определение векторов
+    v1 = np.array(point2) - np.array(point1)
+    v2 = np.array(point3) - np.array(point1)
+    
+    # Площадь треугольника = 0.5 * |v1 x v2|
+    area = 0.5 * np.linalg.norm(np.cross(v1, v2))
+    
+    return area
+
+# Примеры точек (x, y, z)
+point1 = (1, 1, 1)
+point2 = (4, 5, 6)
+point3 = (7, 8, 9)
+
+# Вычисление уравнения плоскости
+A, B, C, D = plane_equation(point1, point2, point3)
+print(f"Уравнение плоскости: {A}x + {B}y + {C}z + {D} = 0")
+
+# Вычисление площади треугольника
+area = triangle_area(point1, point2, point3)
+print(f"Площадь треугольника: {area}")
